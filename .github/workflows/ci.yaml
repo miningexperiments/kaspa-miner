@@ -11,6 +11,9 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
 
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -19,7 +22,7 @@ jobs:
           override: true
 
       - name: Install cuda
-        uses: Jimver/cuda-toolkit@v0.2.5
+        uses: Jimver/cuda-toolkit@v0.2.8
         with:
           cuda: '11.2.2'
           method: 'network'
@@ -63,6 +66,9 @@ jobs:
         if: runner.os == 'Windows'
         run: git config --global core.autocrlf false
 
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -72,7 +78,7 @@ jobs:
 
       - name: Install CUDA Linux
         if: runner.os == 'Linux'
-        uses: Jimver/cuda-toolkit@v0.2.5
+        uses: Jimver/cuda-toolkit@v0.2.8
         with:
           cuda: '11.2.2'
           method: 'network'
@@ -80,7 +86,7 @@ jobs:
 
       - name: Install CUDA Windows
         if: runner.os == 'Windows'
-        uses: Jimver/cuda-toolkit@v0.2.5
+        uses: Jimver/cuda-toolkit@v0.2.8
         with:
           cuda: '11.5.1'
           method: 'network'
@@ -150,6 +156,9 @@ jobs:
         if: runner.os == 'Windows'
         run: git config --global core.autocrlf false
 
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
         with:
@@ -159,7 +168,7 @@ jobs:
 
       - name: Install CUDA Linux
         if: runner.os == 'Linux'
-        uses: Jimver/cuda-toolkit@v0.2.5
+        uses: Jimver/cuda-toolkit@v0.2.8
         with:
           cuda: '11.2.2'
           method: 'network'
@@ -167,7 +176,7 @@ jobs:
 
       - name: Install CUDA Windows
         if: runner.os == 'Windows'
-        uses: Jimver/cuda-toolkit@v0.2.5
+        uses: Jimver/cuda-toolkit@v0.2.8
         with:
           cuda: '11.5.1'
           method: 'network'
@@ -213,12 +222,16 @@ jobs:
         with:
           command: test
           args: --release -p kaspaopencl
+
   lints:
     name: Lints
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
+
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
 
       - name: Install stable toolchain
         uses: actions-rs/toolchain@v1
@@ -229,7 +242,7 @@ jobs:
           components: rustfmt, clippy
 
       - name: Install cuda
-        uses: Jimver/cuda-toolkit@v0.2.5
+        uses: Jimver/cuda-toolkit@v0.2.8
         with:
           cuda: '11.2.2'
           method: 'network'
